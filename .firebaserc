@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ik163-1b3aa"
+  },
+  "targets": {
+    "ik163-1b3aa": {
+      "hosting": {
+        "Ass2fire": [
+          "ik163-1b3aa"
+        ]
+      }
+    }
+  }
+}

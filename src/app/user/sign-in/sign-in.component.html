@@ -1,0 +1,17 @@
+<div class="login" id="main">
+  <div class="fields">
+    <form>
+      <h3 style="margin-left:18%">Vänligen logga in med registrerad användare i fälten nedan</h3>
+      <label for="anv">Användarnamn:</label><br>
+      <input type="text" id="anv" name="anv" placeholder="Användare..." #userName required><br>
+      <label for="pass">Lösenord:</label><br>
+      <input type="password" id="pass" name="pass" placeholder="Lösenord..."#userPassword required><br>
+    </form>
+
+    <div style="margin-left:35%;">
+      <input type="button"  value="Logga in med Email och lösen" (click)="authService.SignIn(userName.value, userPassword.value)">
+      <input type="button"  value="Logga in med Google" (click)="authService.GoogleAuth()">
+    </div>
+
+
+

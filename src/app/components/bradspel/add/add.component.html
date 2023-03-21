@@ -1,0 +1,75 @@
+
+<div [hidden]="submitted">
+<h4 style="display: flex;">Registrera ett spel i samlingen:</h4><button style="margin-left:35%;height:50px; width:150px; font-weight: bold; background: rgba(234,74,67,0.68)" type="button" class="button" (click)="spelForm.reset()">Rensa fälten</button>
+<form (ngSubmit)="onSubmit()" #spelForm="ngForm">
+    <div class="form-group">
+      <label for="namn">Namn</label>
+      <input type="text" class="form-control ng-valid" id="namn"
+             required
+             [(ngModel)]="addSpel.namn" name="namn" #namn="ngModel">
+      <div [hidden]="namn.valid || namn.pristine"
+           class="alert alert-danger">
+        <p>Du måste välja ett namn för spelet</p>
+    </div>
+
+      <div class="form-group">
+        <label for="fran">Från</label>
+        <input type="number" class="form-control ng-valid" id="fran"
+               required
+               [(ngModel)]="addSpel.franspelare" name="fran" #fran="ngModel">
+        <div [hidden]="fran.valid || fran.pristine"
+             class="alert alert-danger">
+          <p>Du måste välja det minsta antalet möjliga spelare</p>
+        </div>
+        <div class="form-group">
+          <label for="fran">Till antal spelare</label>
+          <input type="number" class="form-control ng-valid" id="till"
+                 required
+                 [(ngModel)]="addSpel.tillspelare" name="fran" #till="ngModel">
+          <div [hidden]="till.valid || till.pristine"
+               class="alert alert-danger">
+            <p>Du måste välja det maximala antalet möjliga spelare</p>
+          </div>
+
+    <label for="kategori">kategori</label>
+    <select class="form-control" id="kategori" required>
+      <option *ngFor="let kat of kategorier" [value]="kat">{{kat}}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="designer">Designer</label>
+    <input type="text"  class="form-control" id="designer"
+           required [(ngModel)]="addSpel.designer" name="designer" #designer="ngModel">
+
+    <div [hidden]="designer.valid || designer.pristine"
+         class="alert alert-danger">
+      <p>Du måste välja vem eller vilka som designat spelet</p>
+
+  </div>
+  <div class="form-group">
+    <label for="utgivare">Utgivare</label>
+    <input type="text"  class="form-control" id="utgivare"
+           required [(ngModel)]="addSpel.utgivare" name="utgivare" #utgivare="ngModel">
+
+    <div [hidden]="utgivare.valid || utgivare.pristine"
+         class="alert alert-danger">
+      <p>Du måste välja vilket företag som är utgivare av spelet</p>
+  </div>
+
+  </div>
+    <div class="form-group">
+      <label for="bild">Bild</label>
+    <input type="file" class="form-control" id="bild" (change)="uploadImage($event)" accept=".png,.jpg"/>
+      <div class="progress" *ngIf="uploadProgress$ | async as progress">
+        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': progress + '%' }"></div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+</form>
+</div>
+<div style="margin-left:35% ">
+<input style="background: rgba(31,180,18,0.47)" type="button" class="btn btnPrimary" value="Ladda upp Spel" (click)="sparaSpel()">
+</div>
